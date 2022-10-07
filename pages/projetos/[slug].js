@@ -122,7 +122,7 @@ export async function getStaticPaths() {
     })
 
     return {
-        paths: projects.allProjetos.map((project) => {
+        paths: projects.allProjetos.filter(project => project.linkExterno === '').map((project) => {
         return {
             params: {
             slug: project.slug,
