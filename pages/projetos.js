@@ -52,7 +52,7 @@ export default function Projetos({data}) {
                 ))}
                 </div>
                 </div>
-                <div>bandas sonoras</div>
+                <a href='https://fernandomota.bandcamp.com/' target='_blank'>bandas sonoras</a>
             </div>
             <div className="w-full h-screen hidden md:block">
                 <Image id='bgImage' className="project-img h-full w-full" layout='fill' objectFit='cover' src={img} alt=""/>

@@ -51,7 +51,7 @@ const Header = () => {
                 <button className={`underline-offset-4 ouvir ${isPlaying ? 'underline' : ''}`} onClick={audioStart}>ouvir</button>
                 <button onClick={audioStop} className={`silencio underline-offset-4 ${isPlaying ? '' : 'underline'}`}>silêncio</button>
             </div>
-            <nav className="px-2 sm:px-4 2xl:px-8 py-2.5 nav-vertical z-30">
+            <nav className="px-2 sm:pr-7 sm:pl-3 2xl:px-10 py-2.5 nav-vertical z-30">
                 <div className="container flex flex-row-reverse flex-wrap justify-between items-center mx-auto">
                     <button onClick={() => setNavShow(!navShow)}  className="inline-flex items-center text-4xl p-2 ml-3 rounded-lg md:hidden rotate-90">
                         <span className="sr-only">Open main menu</span>
