@@ -57,9 +57,9 @@ const Header = () => {
                         <span className="sr-only">Open main menu</span>
                         <RiMenuLine/>
                     </button>
-                    <a href="/" className="p-2">
-                        <span className="self-center text-4xl md:text-2xl 2xl:text-3xl ml-16 md:ml-4 font-apoc whitespace-nowrap 3xl:text-4xl">Fernando Mota</span>
-                    </a>
+                    <Link href="/" className="p-2">
+                        <a><span className="self-center text-4xl md:text-2xl 2xl:text-3xl ml-16 md:ml-4 font-apoc whitespace-nowrap 3xl:text-4xl">Fernando Mota</span></a>
+                    </Link>
                     <div className="hidden md:flex items-center space-x-4">  
                         <a href="#" className="text-xs 2xl:text-lg hidden md:block ml-3 py-1 pr-4 pl-3 md:p-0 rotate-90 3xl:text-2xl">EN</a>
                             <div className={`hidden md:block hover:underline hover:text-yellow-100 ${router.pathname == '/projetos' ? 'underline text-yellow-100' : ''}`}><Link href='/projetos'><a className="ml-3 py-1 pr-4 pl-3 md:p-0 2xl:text-xl 3xl:text-2xl">Projetos</a></Link></div>
