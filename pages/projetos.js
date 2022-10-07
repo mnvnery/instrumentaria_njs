@@ -53,7 +53,7 @@ export default function Projetos({data}) {
                 </div>
                 </div>
                 <div className='mt-8'>
-                <a href='https://fernandomota.bandcamp.com/' target='_blank'>bandas sonoras</a>
+                <a href='https://fernandomota.bandcamp.com/' target='_blank' rel="noreferrer">bandas sonoras</a>
                 </div>
             </div>
             <div className="w-full h-screen hidden md:block">
