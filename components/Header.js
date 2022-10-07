@@ -51,7 +51,7 @@ const Header = () => {
                 <button className={`underline-offset-4 ouvir ${isPlaying ? 'underline' : ''}`} onClick={audioStart}>ouvir</button>
                 <button onClick={audioStop} className={`silencio underline-offset-4 ${isPlaying ? '' : 'underline'}`}>silêncio</button>
             </div>
-            <nav className="px-2 sm:px-4 2xl:px-8 py-2.5 nav-vertical md:z-30">
+            <nav className="px-2 sm:px-4 2xl:px-8 py-2.5 nav-vertical z-30">
                 <div className="container flex flex-row-reverse flex-wrap justify-between items-center mx-auto">
                     <button onClick={() => setNavShow(!navShow)}  className="inline-flex items-center text-4xl p-2 ml-3 rounded-lg md:hidden rotate-90">
                         <span className="sr-only">Open main menu</span>
@@ -70,7 +70,7 @@ const Header = () => {
                 </div>
             </nav>
             {navShow && (
-            <div ref={ref} className="fixed z-20 w-1/2 md:w-auto bg-black border border-white text-white" id="navbar-default">
+            <div ref={ref} className="fixed z-40 w-1/2 md:w-auto bg-black border border-white text-white" id="navbar-default">
                 <div className="flex flex-col text-2xl my-3 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
                     <button onClick={() => setNavShow(!navShow)} className="inline-flex items-center text-4xl p-2 ml-3 rounded-lg md:hidden">
                         <span className="sr-only">Open main menu</span>

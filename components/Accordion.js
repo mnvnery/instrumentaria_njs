@@ -8,6 +8,8 @@ const Accordion = ({ questionsAnswers }) => {
         const showDescription = index === activeIndex ? "show" : "hidden";
         const fontWeightBold = index === activeIndex ? "font-weight-bold" : "";
         const ariaExpanded = index === activeIndex ? "true" : "false";
+        const plus = index === activeIndex ? "block" : "hidden";
+        const minus = index === activeIndex ? "hidden" : "block";
         return (
         <AccordionItem
             showDescription={showDescription}
@@ -15,6 +17,8 @@ const Accordion = ({ questionsAnswers }) => {
             ariaExpanded={ariaExpanded}
             item={item}
             index={index}
+            plus={plus}
+            minus={minus}
             onClick={() => {
             setActiveIndex(index);
             }}
