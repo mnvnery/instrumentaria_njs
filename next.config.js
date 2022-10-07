@@ -4,6 +4,7 @@ const nextConfig = {
   swcMinify: true,
   images: {
     domains: ['www.datocms-assets.com'],
+    minimumCacheTTL: 31536000,
   },
   // i18n: {
       // providing the locales supported by your application
