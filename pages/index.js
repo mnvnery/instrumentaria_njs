@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { request } from "../lib/datocms"
 import { HOME_QUERY } from '../lib/queries'
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 
 export async function getStaticProps() {
 
@@ -28,7 +29,7 @@ export default function Home({data}) {
   useEffect(() => changeImage(), [])
   return (
     <>
-      <Image id='bgImage' src={images[currentImageIndex]} alt="Background" layout='fill' objectFit='cover'/>
+      <Link href='/projetos'><Image id='bgImage' src={images[currentImageIndex]} alt="Background" layout='fill' objectFit='cover'/></Link>
     </>
   )
 }

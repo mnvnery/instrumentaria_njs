@@ -9,6 +9,8 @@ const AccordionItem = ({
     item,
     index,
     onClick,
+    plus, 
+    minus
 }) => (
     <div className="faq__question" key={item.question}>
         <dt>
@@ -20,7 +22,7 @@ const AccordionItem = ({
             onClick={onClick}
         >
             <span>{item.question}</span>
-            <span>–</span>
+            <span className={plus}>–</span><span className={minus}>+</span>
         </button>
         </dt>
         <dd>

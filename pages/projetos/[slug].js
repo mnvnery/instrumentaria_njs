@@ -84,6 +84,7 @@ export default function Project({ data, moreProjects }) {
                         <div className="embla__slide flex" key={i}>
                             <div className={`relative size-${w.tamanho} self-${w.posicao}`} onClick={() => openLightboxOnSlide(i + 1)}>
                                 <Image src={w.imagem.url} objectFit="cover" width={w.imagem.width} height={w.imagem.height} />
+                            </div>
                         </div>
                     ))}
                 </EmblaCarousel>
@@ -138,7 +139,7 @@ export async function getStaticProps({ params }) {
         variables: { slug: params.slug },
     })
 
-    const projects = data.allProjetos;
+    const projects = data.allProjetos.filter(project => project.linkExterno === '');
 
     const currentProject = projects.find((project) => project.slug === params.slug);
     const currentProjectIndex = projects.findIndex((project) => project.slug === params.slug);
