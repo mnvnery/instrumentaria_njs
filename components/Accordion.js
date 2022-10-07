@@ -11,7 +11,7 @@ const Accordion = ({ questionsAnswers }) => {
         const plus = index === activeIndex ? "block" : "hidden";
         const minus = index === activeIndex ? "hidden" : "block";
         return (
-        <AccordionItem
+        <AccordionItem key={index}
             showDescription={showDescription}
             fontWeightBold={fontWeightBold}
             ariaExpanded={ariaExpanded}
