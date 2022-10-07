@@ -34,7 +34,7 @@ export default function Projetos({data}) {
     return (
         <>
         <div className="flex justify-center md:justify-start align-middle md:align-baseline">
-            <div className="pl-1 bg-black md:pl-24 md:px-16 pt-16 md:py-5 2xl:py-10 2xl:pr-20 max-w-[50%] md:max-w-[25%] 2xl:max-w-[24%] 3xl:max-w-[20%] text-center md:text-left text-xl md:flex md:flex-col md:justify-between z-10 md:shadow-lg md:shadow-white md:-translate-x-full slide-in 2xl:text-3xl 3xl:text-4xl space-y-4">
+            <div className="pl-1 md:bg-black md:pl-24 md:px-16 pt-16 md:py-5 2xl:py-10 2xl:pr-20 max-w-[50%] md:max-w-[25%] 2xl:max-w-[24%] 3xl:max-w-[20%] text-center md:text-left text-xl md:flex md:flex-col md:justify-between z-10 md:shadow-lg md:shadow-white md:-translate-x-full slide-in 2xl:text-3xl 3xl:text-4xl space-y-4">
                 {projetos.map((project, i) =>
                 (
                     <div key={i} data-hover={`${project.thumbnail.url}`} onMouseOver={handleHover} className="projects hover:text-yellow-100 hover:underline underline-offset-4"><Link href={`projetos/${project.slug}`}><a>{ project.titulo }</a></Link></div>
@@ -52,7 +52,9 @@ export default function Projetos({data}) {
                 ))}
                 </div>
                 </div>
-                <div>bandas sonoras</div>
+                <div className='mt-8'>
+                <a href='https://fernandomota.bandcamp.com/' target='_blank' rel="noreferrer">bandas sonoras</a>
+                </div>
             </div>
             <div className="w-full h-screen hidden md:block">
                 <Image id='bgImage' className="project-img h-full w-full" layout='fill' objectFit='cover' src={img} alt=""/>

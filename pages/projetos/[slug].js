@@ -62,23 +62,23 @@ export default function Project({ data, moreProjects }) {
     ];
     return (
         <>
-        <div class="pl-24 pb-16 md:pb-0 md:pl-0 flex flex-col justify-center md:h-screen md:flex-row md:justify-start align-middle md:align-baseline">
-            <div class="flex flex-col justify-between md:pl-24 md:px-10 pt-16 md:py-5 2xl:py-10 max-w-[80%] md:w-[32%] 2xl:w-[30%] 3xl:w-[25%] text-left text-xl z-10 md:shadow-lg md:shadow-white">
+        <div className="pl-24 pb-16 md:pb-0 md:pl-0 flex flex-col justify-center md:h-screen md:flex-row md:justify-start align-middle md:align-baseline">
+            <div className="flex flex-col justify-between md:pl-24 md:px-10 pt-16 md:py-5 2xl:py-10 max-w-[80%] md:w-[32%] 2xl:w-[30%] 3xl:w-[25%] text-left text-xl z-10 md:shadow-lg md:shadow-white">
                 <div>
-                    <h1 class="text-2xl 2xl:text-3xl 3xl:text-4xl">{ data.titulo }</h1>
-                    <h3 class="text-base my-4 3xl:text-xl">{ data.autoria }</h3>
+                    <h1 className="text-2xl 2xl:text-3xl 3xl:text-4xl">{ data.titulo }</h1>
+                    <h3 className="text-base my-4 3xl:text-xl">{ data.autoria }</h3>
                 </div>
                 <div>
-                    <div class="accordion">
+                    <div className="accordion">
                         <Accordion questionsAnswers={questionsAnswers}/>
                     </div>
-                    <div class="flex text-xs justify-between mt-8 fixed md:static bottom-0 w-[70%] md:w-full bg-black md:bg-transparent py-3 3xl:text-xl">
+                    <div className="flex text-xs justify-between mt-8 fixed md:static bottom-0 w-[70%] md:w-full bg-black md:bg-transparent py-3 3xl:text-xl">
                         <Link href={moreProjects[0].slug}><div className="hover:underline flex items-center"><IoIosArrowBack/><span>anterior</span></div></Link>
                         <Link href={moreProjects[1].slug}><div className="hover:underline flex items-center"><span>seguinte</span><IoIosArrowForward/></div></Link>
                     </div>
                 </div>
             </div>
-            <div id='container' class="w-full h-screen  space-y-5 md:overflow-y-hidden pr-10 md:px-10 pt-14 md:pt-5 md:pb-8 2xl:pb-12">
+            <div id='container' className="hidden md:block w-full h-screen  space-y-5  pr-10 md:overflow-y-hidden md:px-10 pt-14 md:pt-5 md:pb-8 2xl:pb-12">
                 <EmblaCarousel>
                     {data.imagens.map((w, i) => (
                         <div className="embla__slide flex" key={i}>
@@ -88,6 +88,13 @@ export default function Project({ data, moreProjects }) {
                         </div>
                     ))}
                 </EmblaCarousel>
+            </div>
+            <div className="mt-5 md:hidden pr-10">
+                {data.imagens.map((w, i) => (
+                        <div key={i} className={`relative size-${w.tamanho} self-${w.posicao}`} onClick={() => openLightboxOnSlide(i + 1)}>
+                            <Image src={w.imagem.url} objectFit="cover" width={w.imagem.width} height={w.imagem.height} />
+                        </div>
+                ))}
             </div>
             <FsLightbox 
             toggler={lightboxController.toggler} 

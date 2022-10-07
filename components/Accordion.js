@@ -5,7 +5,7 @@ const Accordion = ({ questionsAnswers }) => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     const renderedQuestionsAnswers = questionsAnswers.map((item, index) => {
-        const showDescription = index === activeIndex ? "show" : "hidden";
+        const showDescription = index === activeIndex ? "block" : "hidden";
         const fontWeightBold = index === activeIndex ? "font-weight-bold" : "";
         const ariaExpanded = index === activeIndex ? "true" : "false";
         const plus = index === activeIndex ? "block" : "hidden";
