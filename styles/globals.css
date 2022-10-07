@@ -221,6 +221,7 @@ background: rgb(76, 76, 76);
 .fslightbox-source {
   height: 86vh !important;
   width: auto !important;
+  object-fit: cover;
 }
 
 .fslightbox-toolbar-button:nth-child(0), .fslightbox-toolbar-button:nth-child(2), .fslightbox-toolbar-button:nth-child(3), .fslightbox-toolbar-button:nth-child(1) {
