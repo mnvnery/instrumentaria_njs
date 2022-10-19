@@ -37,7 +37,7 @@ export default function Projetos({data}) {
             <div className="pl-1 md:bg-black md:pl-24 md:px-16 pt-16 md:py-5 2xl:py-10 2xl:pr-20 max-w-[50%] md:max-w-[25%] 2xl:max-w-[24%] 3xl:max-w-[20%] text-center md:text-left text-xl md:flex md:flex-col md:justify-between z-10 md:shadow-lg md:shadow-white md:-translate-x-full slide-in 2xl:text-3xl 3xl:text-4xl space-y-4">
                 {projetos.map((project, i) =>
                 (
-                    <div key={i} data-hover={`${project.thumbnail.url}`} onMouseOver={handleHover} className="projects hover:text-yellow-100 hover:underline underline-offset-4"><Link href={`projetos/${project.slug}`}><a>{ project.titulo }</a></Link></div>
+                    <div key={i} data-hover={`${project.thumbnail ? project.thumbnail.url : ''}`} onMouseOver={handleHover} className="projects hover:text-yellow-100 hover:underline underline-offset-4"><Link href={`projetos/${project.slug}`}><a>{ project.titulo }</a></Link></div>
                 ))}
                 <div>.</div>
                 <div>outras criações<br/>
