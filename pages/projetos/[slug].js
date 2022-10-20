@@ -8,9 +8,6 @@ import { useState } from "react"
 import FsLightbox from 'fslightbox-react'; 
 import {IoIosArrowBack, IoIosArrowForward} from 'react-icons/io'
 import Accordion from "../../components/Accordion"
-import dynamic from 'next/dynamic'
-
-const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
 
 function size(size) {
@@ -44,10 +41,10 @@ export default function Project({ data, moreProjects }) {
         slide: 1 
         }); 
         
-        function openLightboxOnSlide(number) { 
+        function openLightboxOnSlide(name) { 
             setLightboxController({ 
                 toggler: !lightboxController.toggler, 
-                slide: number 
+                source: name 
             }); 
         }         
 
@@ -62,7 +59,7 @@ export default function Project({ data, moreProjects }) {
                 data.fichaTecnica
             },
     ];
-    const allImages = data.galeria.filter(e => e.imagem != undefined).map((img) => img.imagem.url)
+    const allImages = data.galeria.filter(e => e.imagem != undefined).map((img) => img.linkVideo === '' ? img.imagem.url : img.linkVideo)
     return (
         <>
         <div className="pl-24 pb-16 md:pb-0 md:pl-0 flex flex-col justify-center md:h-screen md:flex-row md:justify-start align-middle md:align-baseline">
@@ -86,7 +83,7 @@ export default function Project({ data, moreProjects }) {
                     {data.galeria.map((w, i) => (
                         <div className="embla__slide flex" key={i}>
                             {(w.imagem != undefined &&
-                            <div className={`relative size-${w.tamanho} self-${w.posicao}`} onClick={() => openLightboxOnSlide(i + 1)}>
+                            <div className={`relative size-${w.tamanho} self-${w.posicao}`} onClick={() => openLightboxOnSlide(w.linkVideo === '' ? w.imagem.url : w.linkVideo)}>
                                 <Image src={w.imagem.url} objectFit="cover" width={w.imagem.width} height={w.imagem.height} />
                             </div>)
                             || (w.texto != undefined &&
@@ -101,7 +98,7 @@ export default function Project({ data, moreProjects }) {
                 {data.galeria.map((w, i) => (
                     <div key={i}>
                         {(w.imagem != undefined &&
-                            <div className={`relative size-${w.tamanho} self-${w.posicao}`} onClick={() => openLightboxOnSlide(i + 1)}>
+                            <div className={`relative size-${w.tamanho} self-${w.posicao}`} onClick={() => openLightboxOnSlide(w.linkVideo === '' ? w.imagem.url : w.linkVideo)}>
                                 <Image src={w.imagem.url} objectFit="cover" width={w.imagem.width} height={w.imagem.height} />
                             </div>)
                             || (w.texto != undefined &&
@@ -113,7 +110,7 @@ export default function Project({ data, moreProjects }) {
             <FsLightbox 
             toggler={lightboxController.toggler} 
             sources={allImages} 
-            slide={lightboxController.slide} 
+            source={lightboxController.source} 
             disableThumbs={true} 
             disableZoom={true}
             svg={{
