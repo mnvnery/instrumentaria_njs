@@ -15,8 +15,6 @@ const Header = () => {
         setAudio(new Audio('/09_Cascata.mp3'))
     }, [])
 
-    console.log(audio)
-
     const audioStart = () => {
         audio.play()
         setIsPlaying(true)
