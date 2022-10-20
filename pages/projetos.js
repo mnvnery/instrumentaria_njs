@@ -48,7 +48,7 @@ export default function Projetos({data}) {
                 ))}
                 {outras.map((project, i) =>
                 (
-                    <span key={i} className="text-sm leading-none 2xl:text-lg 2xl:leading-tight creations 3xl:text-xl hover:text-yellow-100 hover:underline"><Link href={`projetos/${project.titulo}`}><a>{ project.titulo }, </a></Link></span>
+                    <span key={i} className="text-sm leading-none 2xl:text-lg 2xl:leading-tight creations 3xl:text-xl hover:text-yellow-100 hover:underline"><Link href={`projetos/${project.slug}`}><a>{ project.titulo }, </a></Link></span>
                 ))}
                 </div>
                 </div>
