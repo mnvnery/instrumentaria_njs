@@ -44,7 +44,7 @@ export default function Projetos({data}) {
                 <div className='leading-none'>
                 {links.map((project, i) =>
                 (
-                    <span key={i} className="text-sm leading-none 2xl:text-lg 2xl:leading-tight creations 3xl:text-xl hover:text-yellow-100 hover:underline"><a href={project.linkExterno}>{ project.titulo }, </a></span>
+                    <span key={i} className="text-sm leading-none 2xl:text-lg 2xl:leading-tight creations 3xl:text-xl hover:text-yellow-100 hover:underline"><a href={project.linkExterno} rel="noreferrer" target='_blank'>{ project.titulo }, </a></span>
                 ))}
                 {outras.map((project, i) =>
                 (

@@ -8,9 +8,6 @@ import { useState } from "react"
 import FsLightbox from 'fslightbox-react'; 
 import {IoIosArrowBack, IoIosArrowForward} from 'react-icons/io'
 import Accordion from "../../components/Accordion"
-import dynamic from 'next/dynamic'
-
-const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
 
 function size(size) {
