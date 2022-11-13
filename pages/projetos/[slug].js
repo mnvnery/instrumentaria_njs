@@ -73,8 +73,8 @@ export default function Project({ data, moreProjects }) {
                         <Accordion questionsAnswers={questionsAnswers}/>
                     </div>
                     <div className="flex text-xs justify-between mt-8 fixed md:static bottom-0 w-[70%] md:w-full bg-black md:bg-transparent py-3 3xl:text-xl">
-                        <Link href={moreProjects[0].slug}><div className="hover:underline flex items-center"><IoIosArrowBack/><span>anterior</span></div></Link>
-                        <Link href={moreProjects[1].slug}><div className="hover:underline flex items-center"><span>seguinte</span><IoIosArrowForward/></div></Link>
+                        <Link href={moreProjects[0].slug}><a className="hover:underline flex items-center"><IoIosArrowBack/><span>anterior</span></a></Link>
+                        <Link href={moreProjects[1].slug}><a className="hover:underline flex items-center"><span>seguinte</span><IoIosArrowForward/></a></Link>
                     </div>
                 </div>
             </div>
@@ -83,11 +83,11 @@ export default function Project({ data, moreProjects }) {
                     {data.galeria.map((w, i) => (
                         <div className="embla__slide flex" key={i}>
                             {(w.imagem != undefined &&
-                            <div className={`relative size-${w.tamanho} self-${w.posicao}`} onClick={() => openLightboxOnSlide(w.linkVideo === '' ? w.imagem.url : w.linkVideo)}>
+                            <div className={`relative size-${w.tamanho} self-${w.posicao} ${w.imagem.width > w.imagem.height ? 'landscape' : 'portrait'}`} onClick={() => openLightboxOnSlide(w.linkVideo === '' ? w.imagem.url : w.linkVideo)}>
                                 <Image src={w.imagem.url} objectFit="cover" width={w.imagem.width} height={w.imagem.height} />
                             </div>)
                             || (w.texto != undefined &&
-                                <div dangerouslySetInnerHTML={{__html: w.texto}} className={`w-[20vw] leading-tight font-baskerville self-${w.posicao}`}/>)
+                                <div dangerouslySetInnerHTML={{__html: w.texto}} className={`w-[20vw] leading-tight self-${w.posicao}`}/>)
                             }
                         </div>
                     ))}
