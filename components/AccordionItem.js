@@ -25,7 +25,7 @@ const AccordionItem = ({
             <span className={plus}>–</span><span className={minus}>+</span>
         </button>
         </dt>
-        <dd>
+        <dd className="mb-5">
         <SlideDown>
         <div
             id={`faq${index + 1}_desc`}
