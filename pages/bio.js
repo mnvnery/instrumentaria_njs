@@ -27,7 +27,7 @@ export default function Bio({data}) {
                 </div>
                 <div className="pl-24 md:pl-0 pr-10 md:pr-0 my-10 md:my-0 md:w-3/5 2xl:w-4/6">
                     <div className='relative w-full h-full'>
-                        <Image src={data.imagem.url} alt="" objectFit='cover' layout='fill' />
+                        <Image src={data.imagem.url} alt="" objectFit='cover' layout='fill' objectPosition={`${data.imagem.focalPoint.x * 100}% ${data.imagem.focalPoint.y * 100}%`} />
                     </div>
                 </div>
             </div>

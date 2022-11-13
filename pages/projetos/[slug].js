@@ -84,7 +84,7 @@ export default function Project({ data, moreProjects }) {
                         <div className="embla__slide flex" key={i}>
                             {(w.imagem != undefined &&
                             <div className={`relative size-${w.tamanho} self-${w.posicao} ${w.imagem.width > w.imagem.height ? 'landscape' : 'portrait'}`} onClick={() => openLightboxOnSlide(w.linkVideo === '' ? w.imagem.url : w.linkVideo)}>
-                                <Image src={w.imagem.url} objectFit="cover" width={w.imagem.width} height={w.imagem.height} />
+                                <Image src={w.imagem.url} objectFit="cover" width={w.imagem.width} height={w.imagem.height}  objectPosition={`${w.imagem.focalPoint.x * 100}% ${w.imagem.focalPoint.y * 100}%`} />
                             </div>)
                             || (w.texto != undefined &&
                                 <div dangerouslySetInnerHTML={{__html: w.texto}} className={`w-[20vw] leading-tight self-${w.posicao}`}/>)
