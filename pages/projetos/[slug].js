@@ -1,5 +1,5 @@
 import { request } from "../../lib/datocms"
-import { PROJECTS_QUERY } from '../../lib/queries'
+import { PROJECTS_QUERY, SOUNDS_QUERY } from '../../lib/queries'
 import Header from "../../components/Header"
 import EmblaCarousel from '../../components/EmblaCarousel'
 import Image from "next/image"
@@ -8,7 +8,6 @@ import { useState } from "react"
 import FsLightbox from 'fslightbox-react'; 
 import {IoIosArrowBack, IoIosArrowForward} from 'react-icons/io'
 import Accordion from "../../components/Accordion"
-
 
 function size(size) {
     if (size === 'small') {
@@ -35,7 +34,7 @@ function align(align) {
 }
 
 
-export default function Project({ data, moreProjects }) {
+export default function Project({ data, moreProjects, sounds }) {
     const [lightboxController, setLightboxController] = useState({ 
         toggler: false, 
         slide: 1 
@@ -62,6 +61,7 @@ export default function Project({ data, moreProjects }) {
     const allImages = data.galeria.filter(e => e.imagem != undefined).map((img) => img.linkVideo === '' ? img.imagem.url : img.linkVideo)
     return (
         <>
+        <Header sounds={sounds}/>
         <div className="pl-24 pb-16 md:pb-0 md:pl-0 flex flex-col justify-center md:h-screen md:flex-row md:justify-start align-middle md:align-baseline">
             <div className="flex flex-col justify-between md:pl-24 md:px-10 pt-16 md:py-5 2xl:py-10 max-w-[80%] md:w-[32%] 2xl:w-[30%] 3xl:w-[25%] text-left text-xl z-10 md:shadow-lg md:shadow-white">
                 <div>
@@ -73,8 +73,8 @@ export default function Project({ data, moreProjects }) {
                         <Accordion questionsAnswers={questionsAnswers}/>
                     </div>
                     <div className="flex text-xs justify-between mt-8 fixed md:static bottom-0 w-[70%] md:w-full bg-black md:bg-transparent py-3 3xl:text-xl">
-                        <Link href={moreProjects[0].slug}><div className="hover:underline flex items-center"><IoIosArrowBack/><span>anterior</span></div></Link>
-                        <Link href={moreProjects[1].slug}><div className="hover:underline flex items-center"><span>seguinte</span><IoIosArrowForward/></div></Link>
+                        <Link href={moreProjects[0].slug}><a className="hover:underline flex items-center"><IoIosArrowBack/><span>anterior</span></a></Link>
+                        <Link href={moreProjects[1].slug}><a className="hover:underline flex items-center"><span>seguinte</span><IoIosArrowForward/></a></Link>
                     </div>
                 </div>
             </div>
@@ -83,11 +83,11 @@ export default function Project({ data, moreProjects }) {
                     {data.galeria.map((w, i) => (
                         <div className="embla__slide flex" key={i}>
                             {(w.imagem != undefined &&
-                            <div className={`relative size-${w.tamanho} self-${w.posicao}`} onClick={() => openLightboxOnSlide(w.linkVideo === '' ? w.imagem.url : w.linkVideo)}>
-                                <Image src={w.imagem.url} objectFit="cover" width={w.imagem.width} height={w.imagem.height} />
+                            <div className={`relative size-${w.tamanho} self-${w.posicao} ${w.imagem.width > w.imagem.height ? 'landscape' : 'portrait'}`} onClick={() => openLightboxOnSlide(w.linkVideo === '' ? w.imagem.url : w.linkVideo)}>
+                                <Image src={w.imagem.url} objectFit="cover" width={w.imagem.width} height={w.imagem.height}  objectPosition={`${w.imagem.focalPoint.x * 100}% ${w.imagem.focalPoint.y * 100}%`} />
                             </div>)
                             || (w.texto != undefined &&
-                                <div dangerouslySetInnerHTML={{__html: w.texto}} className={`w-[20vw] leading-tight font-baskerville self-${w.posicao}`}/>)
+                                <div dangerouslySetInnerHTML={{__html: w.texto}} className={`w-[20vw] leading-tight self-${w.posicao}`}/>)
                             }
                         </div>
                     ))}
@@ -157,6 +157,10 @@ export async function getStaticProps({ params }) {
         variables: { slug: params.slug },
     })
 
+    const sounds = await request({
+        query: SOUNDS_QUERY,
+    })
+
     const projects = data.allProjetos.filter(project => project.linkExterno === '');
 
     const currentProject = projects.find((project) => project.slug === params.slug);
@@ -174,6 +178,7 @@ export async function getStaticProps({ params }) {
         props: {
             data: currentProject,
             moreProjects: [prevProject, nextProject],
+            sounds: sounds.home.sons
         },
     }
 }

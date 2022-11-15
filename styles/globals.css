@@ -242,23 +242,37 @@ background: rgb(76, 76, 76);
 
 @media (min-width: 768px) { 
 
-  .size-small {
+  .size-small.portrait {
+      width: 15vw;
+      height: auto;
+  }
+
+  .size-small.landscape {
       width: 20vw;
       height: auto;
   }
   
-  .size-medium {
-      width: 40vw;
+  .size-medium.landscape {
+      width: 42vw;
       height: auto;
   }
+
+  .size-medium.portrait {
+    width: 22vw;
+    height: auto;
+}
   
   .size-large {
       width: 100%;
       min-width: 35vw;
-      height: 90vh;
-      object-fit: cover;
+      height: 92vh;
   }
-  
+  .size-large.landscape {
+      width: 100%;
+      min-width: 68vw;
+      height: 92vh;
+  }
+    
   .self-bottom {
       align-self: end;
   }

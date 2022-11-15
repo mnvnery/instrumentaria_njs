@@ -1,27 +1,34 @@
 import Link from "next/link"
 import { useRouter } from 'next/router'
 import { useRef, useState, useEffect } from "react"
-import {RiMenuLine, RiCloseLine, RiInstagramLine} from 'react-icons/ri'
+import {RiMenuLine, RiCloseLine, RiInstagramFill, RiYoutubeFill} from 'react-icons/ri'
+import { AiFillFacebook} from 'react-icons/ai'
 
 
-const Header = () => {
+
+const Header = ({sounds}) => {
+    const allAudios = []
+    const audioLinks = sounds.map((sound) => ( allAudios.push(sound.url)))
     const router = useRouter()
 
-    const [audio, setAudio] = useState(null)
-    const [isPlaying, setIsPlaying] = useState(false);
-    
+    const [audio, setAudio] = useState(allAudios)
+    const [isPlaying, setIsPlaying] = useState(null);
+
+    const [currentAudioIndex, setCurrentAudioIndex] = useState()
 
     useEffect(() => {
-        setAudio(new Audio('/09_Cascata.mp3'))
+        setAudio(new Audio(allAudios[currentAudioIndex]));
+        const randomNumber = Math.floor(Math.random() * allAudios.length);
+        setCurrentAudioIndex(randomNumber);
     }, [])
 
     const audioStart = () => {
-        audio.play()
+        audio.play();
         setIsPlaying(true)
     }
 
     const audioStop = () => {
-        audio.pause()
+        audio.pause();
         setIsPlaying(false)
     }
     const [navShow, setNavShow] = useState(false)
@@ -48,6 +55,11 @@ const Header = () => {
             <div className="font-apoc flex space-x-4 p-4 2xl:p-8 absolute z-10 right-0 2xl:text-xl">
                 <button className={`underline-offset-4 ouvir ${isPlaying ? 'underline' : ''}`} onClick={audioStart}>ouvir</button>
                 <button onClick={audioStop} className={`silencio underline-offset-4 ${isPlaying ? '' : 'underline'}`}>silêncio</button>
+            </div>
+            <div className='fixed bottom-5 right-5 flex justify-start items-center z-10 space-x-3'>
+                <a href="https://www.instagram.com/motofonia/" className="block py-1 pr-1 pl-3 md:p-0"><RiInstagramFill/></a>
+                <a href="https://www.instagram.com/motofonia/" className="block py-1 pr-1 pl-3 md:p-0"><AiFillFacebook/></a>
+                <a href="https://www.instagram.com/motofonia/" className="block py-1 pr-1 pl-3 md:p-0 text-xl"><RiYoutubeFill/></a>
             </div>
             <nav className="px-2 sm:pr-7 sm:pl-3 2xl:px-10 py-2.5 nav-vertical z-30">
                 <div className="container flex flex-row-reverse flex-wrap justify-between items-center mx-auto">
@@ -81,7 +93,11 @@ const Header = () => {
                         <div className={`${router.pathname == '/bio' ? 'underline text-yellow-100' : ''}`}><Link href='/bio'><a className="ml-3 py-1 pr-4 pl-3 md:p-0">Bio</a></Link></div>
                     <div className="py-5 text-base">
                         <a href="#" className="block ml-3 py-1 pr-4 pl-3 md:p-0">EN</a>
-                        <a href="https://www.instagram.com/motofonia/" className="block ml-3 py-1 pr-4 pl-3 md:p-0"><RiInstagramLine/></a>
+                        <div className='ml-3 flex justify-start items-center'>
+                            <a href="https://www.instagram.com/motofonia/" className="block py-1 pr-1 pl-3 md:p-0"><RiInstagramFill/></a>
+                            <a href="https://www.instagram.com/motofonia/" className="block py-1 pr-1 pl-3 md:p-0"><AiFillFacebook/></a>
+                            <a href="https://www.instagram.com/motofonia/" className="block py-1 pr-1 pl-3 md:p-0 text-xl"><RiYoutubeFill/></a>
+                        </div>
                     </div>
                 </div>
             </div>

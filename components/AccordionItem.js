@@ -25,12 +25,12 @@ const AccordionItem = ({
             <span className={plus}>–</span><span className={minus}>+</span>
         </button>
         </dt>
-        <dd>
+        <dd className="mb-5">
         <SlideDown>
         <div
             id={`faq${index + 1}_desc`}
             data-qa="faq__desc"
-            className={`mb-5 ${index === 0 ? 'mt-2 font-ag-narrow tracking-wide leading-5 text-base 3xl:text-xl' : 'text-xxs 2xl:text-sm mt-2 ficha-tecnica font-ag-narrow tracking-wide 3xl:text-xl' } ${showDescription}`}
+            className={`mb-5 max-h-[66vh] overflow-y-scroll ${index === 0 ? 'mt-2 font-ag-narrow tracking-wide leading-5 text-base 3xl:text-xl' : 'text-xxs 2xl:text-sm mt-2 ficha-tecnica font-ag-narrow tracking-wide 3xl:text-xl' } ${showDescription}`}
             dangerouslySetInnerHTML={{__html: item.answer}}
         >
         </div>
