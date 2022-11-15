@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import { request } from "../lib/datocms"
-import { BIO_QUERY } from '../lib/queries'
+import { BIO_QUERY, SOUNDS_QUERY } from '../lib/queries'
+import Header from '../components/Header'
+
 
 export async function getStaticProps() {
 
@@ -8,18 +10,23 @@ export async function getStaticProps() {
         query: BIO_QUERY,
     })
 
+    const sounds = await request({
+        query: SOUNDS_QUERY,
+    })
 
     return {
         props: {
         data: data.bio,
+        sounds: sounds.home.sons
         },
     }
 }
 
-export default function Bio({data}) {
-
+export default function Bio({data, sounds}) {
+    
     return (
         <>
+        <Header sounds={sounds}/>
             <div className="md:flex min-h-screen">
                 <div className="pl-24 md:pl-24 pt-16  md:py-5 2xl:py-10 text-sm md:border-r pr-14 md:pr-16 bg-black w-full md:w-2/5 2xl:w-2/6 z-10 md:shadow-lg md:shadow-white">
                     <p className="text-xl md:text-sm 2xl:text-base mb-10 3xl:text-2xl">Biografia</p>

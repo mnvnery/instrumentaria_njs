@@ -1,8 +1,9 @@
 import Image from 'next/image'
 import { request } from "../lib/datocms"
-import { PROJECTS_QUERY } from '../lib/queries'
+import { PROJECTS_QUERY, SOUNDS_QUERY } from '../lib/queries'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Header from '../components/Header'
 
 export async function getStaticProps() {
 
@@ -10,15 +11,19 @@ export async function getStaticProps() {
         query: PROJECTS_QUERY,
     })
 
+    const sounds = await request({
+        query: SOUNDS_QUERY,
+    })
 
     return {
         props: {
         data: data.allProjetos,
+        sounds: sounds.home.sons
         },
     }
 }
 
-export default function Projetos({data}) {
+export default function Projetos({data, sounds}) {
     const projetos = data.filter(project => project.outras === false)
     const outras = data.filter(project => project.outras === true && project.linkExterno === '')
     const links = data.filter(project => project.outras === true && project.linkExterno != '')
@@ -33,6 +38,7 @@ export default function Projetos({data}) {
     }
     return (
         <>
+        <Header sounds={sounds}/>
         <div className="flex justify-center md:justify-start align-middle md:align-baseline">
             <div className="pl-1 md:bg-black md:pl-24 md:px-16 pt-16 md:py-5 2xl:py-10 2xl:pr-20 max-w-[50%] md:max-w-[25%] 2xl:max-w-[24%] 3xl:max-w-[20%] text-center md:text-left text-xl md:flex md:flex-col md:justify-between z-10 md:shadow-lg md:shadow-white md:-translate-x-full slide-in 2xl:text-3xl 3xl:text-4xl space-y-4">
                 {projetos.map((project, i) =>

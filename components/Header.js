@@ -6,24 +6,29 @@ import { AiFillFacebook} from 'react-icons/ai'
 
 
 
-const Header = () => {
+const Header = ({sounds}) => {
+    const allAudios = []
+    const audioLinks = sounds.map((sound) => ( allAudios.push(sound.url)))
     const router = useRouter()
 
-    const [audio, setAudio] = useState(null)
-    const [isPlaying, setIsPlaying] = useState(false);
-    
+    const [audio, setAudio] = useState(allAudios)
+    const [isPlaying, setIsPlaying] = useState(null);
+
+    const [currentAudioIndex, setCurrentAudioIndex] = useState()
 
     useEffect(() => {
-        setAudio(new Audio('/09_Cascata.mp3'))
+        setAudio(new Audio(allAudios[currentAudioIndex]));
+        const randomNumber = Math.floor(Math.random() * allAudios.length);
+        setCurrentAudioIndex(randomNumber);
     }, [])
 
     const audioStart = () => {
-        audio.play()
+        audio.play();
         setIsPlaying(true)
     }
 
     const audioStop = () => {
-        audio.pause()
+        audio.pause();
         setIsPlaying(false)
     }
     const [navShow, setNavShow] = useState(false)
