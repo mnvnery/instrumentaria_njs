@@ -8,18 +8,17 @@ import { AiFillFacebook} from 'react-icons/ai'
 
 const Header = ({sounds}) => {
     const allAudios = []
-    const audioLinks = sounds.map((sound) => ( allAudios.push(sound.url)))
+    const audioLinks = sounds.map((sound) => (allAudios.push(sound.url)))
     const router = useRouter()
 
-    const [audio, setAudio] = useState(allAudios)
+    const [audio, setAudio] = useState(null)
     const [isPlaying, setIsPlaying] = useState(null);
 
-    const [currentAudioIndex, setCurrentAudioIndex] = useState()
+    const [currentAudioIndex, setCurrentAudioIndex] = useState(Math.floor(Math.random() * allAudios.length))
 
     useEffect(() => {
         setAudio(new Audio(allAudios[currentAudioIndex]));
-        const randomNumber = Math.floor(Math.random() * allAudios.length);
-        setCurrentAudioIndex(randomNumber);
+        console.log(audio)
     }, [])
 
     const audioStart = () => {
