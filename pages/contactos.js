@@ -20,7 +20,7 @@ export async function getStaticProps() {
         },
     }
 }
-export default function Contactos({sounds}) {
+export default function Contactos({sounds, socials}) {
 
     return (
         <>
