@@ -6,7 +6,7 @@ import { AiFillFacebook} from 'react-icons/ai'
 
 
 
-const Header = ({sounds}) => {
+const Header = ({sounds, socials}) => {
     const allAudios = []
     const audioLinks = sounds.map((sound) => (allAudios.push(sound.url)))
     const router = useRouter()
@@ -93,9 +93,9 @@ const Header = ({sounds}) => {
                     <div className="py-5 text-base">
                         <a href="#" className="block ml-3 py-1 pr-4 pl-3 md:p-0">EN</a>
                         <div className='ml-3 flex justify-start items-center'>
-                            <a href="https://www.instagram.com/motofonia/" className="block py-1 pr-1 pl-3 md:p-0"><RiInstagramFill/></a>
-                            <a href="https://www.instagram.com/motofonia/" className="block py-1 pr-1 pl-3 md:p-0"><AiFillFacebook/></a>
-                            <a href="https://www.instagram.com/motofonia/" className="block py-1 pr-1 pl-3 md:p-0 text-xl"><RiYoutubeFill/></a>
+                            <a href={socials.instagram} target="_blank" rel='noreferrer' className="block py-1 pr-1 pl-3 md:p-0"><RiInstagramFill/></a>
+                            <a href={socials.facebook} target="_blank" rel='noreferrer' className="block py-1 pr-1 pl-3 md:p-0"><AiFillFacebook/></a>
+                            <a href={socials.youtube} target="_blank" rel='noreferrer' className="block py-1 pr-1 pl-3 md:p-0 text-xl"><RiYoutubeFill/></a>
                         </div>
                     </div>
                 </div>
