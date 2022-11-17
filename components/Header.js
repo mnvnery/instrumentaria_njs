@@ -56,9 +56,9 @@ const Header = ({sounds, socials}) => {
                 <button onClick={audioStop} className={`silencio underline-offset-4 ${isPlaying ? '' : 'underline'}`}>silêncio</button>
             </div>
             <div className='fixed bottom-5 right-5 flex justify-start items-center z-10 space-x-3'>
-                <a href={socials.instagram} className="block py-1 pr-1 pl-3 md:p-0"><RiInstagramFill/></a>
-                <a href={socials.facebook} className="block py-1 pr-1 pl-3 md:p-0"><AiFillFacebook/></a>
-                <a href={socials.youtube} className="block py-1 pr-1 pl-3 md:p-0 text-xl"><RiYoutubeFill/></a>
+                <a href={socials.instagram}  target='blank' rel='noreferrer' className="block py-1 pr-1 pl-3 md:p-0"><RiInstagramFill/></a>
+                <a href={socials.facebook} target='blank' rel='noreferrer'  className="block py-1 pr-1 pl-3 md:p-0"><AiFillFacebook/></a>
+                <a href={socials.youtube}  target='blank' rel='noreferrer' className="block py-1 pr-1 pl-3 md:p-0 text-xl"><RiYoutubeFill/></a>
             </div>
             <nav className="px-2 sm:pr-7 sm:pl-3 2xl:px-10 py-2.5 nav-vertical z-30">
                 <div className="container flex flex-row-reverse flex-wrap justify-between items-center mx-auto">
