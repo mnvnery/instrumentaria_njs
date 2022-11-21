@@ -138,14 +138,20 @@ export default function Project({ data, moreProjects, sounds, socials }) {
     )
 }
 export async function getStaticPaths({locales}) {
-    const data = await request({ query: `{ allProjetos { slug } }` });
+    const data = await request({ 
+        query: `{ 
+            allProjetos { 
+                slug 
+                linkExterno
+            } 
+        }` 
+    });
     const pathsArray = [];
-    data.allProjetos.filter(project => project.linkExterno !== '').map((proj) => {
+    data.allProjetos.filter(project => project.linkExterno === '').map((proj) => {
         locales.map((language) => {
             pathsArray.push({ params: { slug: proj.slug }, locale: language });
         });
     });
-    console.log(pathsArray)
     return {
         paths: pathsArray,
         fallback: false,
