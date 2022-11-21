@@ -1,14 +1,51 @@
 import Image from 'next/image'
 import { request } from "../lib/datocms"
-import { PROJECTS_QUERY, SOUNDS_QUERY, SOCIALS_QUERY } from '../lib/queries'
+import { SOUNDS_QUERY, SOCIALS_QUERY } from '../lib/queries'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Header from '../components/Header'
+import {useRouter} from "next/router"
 
-export async function getStaticProps() {
+export async function getStaticProps({locale}) {
+    const formattedLocale = locale;
 
     const data = await request({
-        query: PROJECTS_QUERY,
+        query: `{
+            allProjetos(locale: ${formattedLocale}) {
+                titulo
+                autoria
+                fichaTecnica
+                sinopse
+                slug
+                outras
+                linkExterno
+                thumbnail {
+                    url
+                }
+                galeria {
+                    ... on ImageRecord {
+                      id
+                      imagem {
+                        url
+                        width
+                        height
+                        focalPoint {
+                            x
+                            y
+                        }
+                      }
+                      posicao
+                      tamanho
+                      linkVideo
+                    }
+                    ... on TextoRecord {
+                      id
+                      posicao
+                      texto
+                    }
+                }
+            }
+        }`  
     })
 
     const sounds = await request({
@@ -28,6 +65,8 @@ export async function getStaticProps() {
 }
 
 export default function Projetos({data, sounds, socials}) {
+
+    const { locale, locales, asPath } = useRouter().locale;
     const projetos = data.filter(project => project.outras === false)
     const outras = data.filter(project => project.outras === true && project.linkExterno === '')
     const links = data.filter(project => project.outras === true && project.linkExterno != '')

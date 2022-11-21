@@ -7,7 +7,6 @@ import Link from 'next/link'
 import Header from '../components/Header'
 
 export async function getStaticProps() {
-
   const data = await request({
       query: HOME_QUERY,
   })

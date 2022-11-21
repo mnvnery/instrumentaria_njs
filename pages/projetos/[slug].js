@@ -8,6 +8,7 @@ import { useState } from "react"
 import FsLightbox from 'fslightbox-react'; 
 import {IoIosArrowBack, IoIosArrowForward} from 'react-icons/io'
 import Accordion from "../../components/Accordion"
+import { useRouter } from "next/router"
 
 function size(size) {
     if (size === 'small') {
@@ -35,6 +36,8 @@ function align(align) {
 
 
 export default function Project({ data, moreProjects, sounds, socials }) {
+    const { locale } = useRouter().locale
+
     const [lightboxController, setLightboxController] = useState({ 
         toggler: false, 
         slide: 1 
@@ -73,8 +76,8 @@ export default function Project({ data, moreProjects, sounds, socials }) {
                         <Accordion questionsAnswers={questionsAnswers}/>
                     </div>
                     <div className="flex text-xs justify-between mt-8 fixed md:static bottom-0 w-[70%] md:w-full bg-black md:bg-transparent py-3 3xl:text-xl">
-                        <Link href={moreProjects[0].slug}><a className="hover:underline flex items-center"><IoIosArrowBack/><span>anterior</span></a></Link>
-                        <Link href={moreProjects[1].slug}><a className="hover:underline flex items-center"><span>seguinte</span><IoIosArrowForward/></a></Link>
+                        <Link href={moreProjects[0].slug}><a className="hover:underline flex items-center"><IoIosArrowBack/><span>{locale === 'pt' ? 'anterior' : 'previous'}</span></a></Link>
+                        <Link href={moreProjects[1].slug}><a className="hover:underline flex items-center"><span>{locale === 'pt' ? 'seguinte' : 'next'}</span><IoIosArrowForward/></a></Link>
                     </div>
                 </div>
             </div>
@@ -134,26 +137,61 @@ export default function Project({ data, moreProjects, sounds, socials }) {
         </>
     )
 }
-export async function getStaticPaths() {
-    const projects = await request({
-        query: PROJECTS_QUERY,
-    })
-
+export async function getStaticPaths({locales}) {
+    const data = await request({ query: `{ allProjetos { slug } }` });
+    const pathsArray = [];
+    data.allProjetos.filter(project => project.linkExterno !== '').map((proj) => {
+        locales.map((language) => {
+            pathsArray.push({ params: { slug: proj.slug }, locale: language });
+        });
+    });
+    console.log(pathsArray)
     return {
-        paths: projects.allProjetos.filter(project => project.linkExterno === '').map((project) => {
-        return {
-            params: {
-            slug: project.slug,
-            },
-        }
-        }),
+        paths: pathsArray,
         fallback: false,
-    }
+    };
     }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params, locale }) {
+    const formattedLocale = locale;
+
     const data = await request({
-        query: PROJECTS_QUERY,
+        query: `{
+            allProjetos(locale: ${formattedLocale}) {
+                titulo
+                autoria
+                fichaTecnica
+                sinopse
+                slug
+                outras
+                linkExterno
+                thumbnail {
+                    url
+                }
+                galeria {
+                    ... on ImageRecord {
+                      id
+                      imagem {
+                        url
+                        width
+                        height
+                        focalPoint {
+                            x
+                            y
+                        }
+                      }
+                      posicao
+                      tamanho
+                      linkVideo
+                    }
+                    ... on TextoRecord {
+                      id
+                      posicao
+                      texto
+                    }
+                }
+            }
+        }`,
         variables: { slug: params.slug },
     })
 
