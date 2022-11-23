@@ -17,7 +17,6 @@ const Header = ({sounds, socials}) => {
 
     useEffect(() => {
         setAudio(new Audio(allAudios[currentAudioIndex]));
-        console.log(audio)
     }, [])
 
     const audioStart = () => {
