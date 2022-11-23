@@ -1,8 +1,8 @@
 import Link from "next/link"
 import { useRouter } from 'next/router'
 import { useRef, useState, useEffect } from "react"
-import {RiMenuLine, RiCloseLine, RiInstagramFill, RiYoutubeFill} from 'react-icons/ri'
-import { AiFillFacebook} from 'react-icons/ai'
+import {RiMenuLine, RiCloseLine, RiInstagramFill, RiYoutubeFill, RiLinkM} from 'react-icons/ri'
+import { AiFillFacebook, AiOutlineLink } from 'react-icons/ai'
 
 const Header = ({sounds, socials}) => {
     const { locale, locales, asPath } = useRouter();
@@ -17,7 +17,6 @@ const Header = ({sounds, socials}) => {
 
     useEffect(() => {
         setAudio(new Audio(allAudios[currentAudioIndex]));
-        console.log(audio)
     }, [])
 
     const audioStart = () => {
@@ -55,9 +54,11 @@ const Header = ({sounds, socials}) => {
                 <button onClick={audioStop} className={`silencio underline-offset-4 ${isPlaying ? '' : 'underline'}`}>{locale === 'pt' ? 'silêncio' : 'silence'}</button>
             </div>
             <div className='fixed bottom-5 right-5 flex justify-start items-center z-10 space-x-3'>
+                <a href={socials.linktree}  target='blank' rel='noreferrer' className="block py-1 pr-1 pl-3 md:p-0 text-lg"><AiOutlineLink/></a>
                 <a href={socials.instagram}  target='blank' rel='noreferrer' className="block py-1 pr-1 pl-3 md:p-0"><RiInstagramFill/></a>
                 <a href={socials.facebook} target='blank' rel='noreferrer'  className="block py-1 pr-1 pl-3 md:p-0"><AiFillFacebook/></a>
                 <a href={socials.youtube}  target='blank' rel='noreferrer' className="block py-1 pr-1 pl-3 md:p-0 text-xl"><RiYoutubeFill/></a>
+                
             </div>
             <nav className="px-2 sm:pr-7 sm:pl-3 2xl:px-10 py-2.5 nav-vertical z-30">
                 <div className="container flex flex-row-reverse flex-wrap justify-between items-center mx-auto">
@@ -92,9 +93,11 @@ const Header = ({sounds, socials}) => {
                     <div className="py-5 text-base">
                         {locale === 'pt' ? <Link href={asPath} locale={'en'}><a className="block ml-3 py-1 pr-4 pl-3 md:p-0">EN</a></Link> : <Link href={asPath} locale={'pt'}><a className="block ml-3 py-1 pr-4 pl-3 md:p-0">PT</a></Link>}
                         <div className='ml-3 flex justify-start items-center'>
+                            <a href={socials.linktree} target="_blank" rel='noreferrer' className="block py-1 pr-1 pl-3 md:p-0 text-xl"><AiOutlineLink/></a>
                             <a href={socials.instagram} target="_blank" rel='noreferrer' className="block py-1 pr-1 pl-3 md:p-0"><RiInstagramFill/></a>
                             <a href={socials.facebook} target="_blank" rel='noreferrer' className="block py-1 pr-1 pl-3 md:p-0"><AiFillFacebook/></a>
                             <a href={socials.youtube} target="_blank" rel='noreferrer' className="block py-1 pr-1 pl-3 md:p-0 text-xl"><RiYoutubeFill/></a>
+                            
                         </div>
                     </div>
                 </div>

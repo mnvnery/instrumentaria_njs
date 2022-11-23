@@ -90,8 +90,6 @@ export default function Projetos({data, sounds, socials}) {
                         <div key={i} data-hover={`${project.thumbnail ? project.thumbnail.url : ''}`} onMouseOver={handleHover} className="projects hover:text-yellow-100 hover:underline underline-offset-4"><Link href={`projetos/${project.slug}`}><a>{ project.titulo }</a></Link></div>
                     :   <div key={i} data-hover={`${project.thumbnail ? project.thumbnail.url : ''}`} onMouseOver={handleHover} className="projects hover:text-yellow-100 hover:underline underline-offset-4"><a href={`${project.linkExterno}`} target='blank' rel='noreferrer'>{ project.titulo }</a></div>
                 ))}
-                <div>.</div>
-                <div>outras criações<br/>
                 <div className='leading-none'>
                 {links.map((project, i) =>
                 (
@@ -102,9 +100,8 @@ export default function Projetos({data, sounds, socials}) {
                     <span key={i} className="text-sm leading-none 2xl:text-lg 2xl:leading-tight creations 3xl:text-xl hover:text-yellow-100 hover:underline"><Link href={`projetos/${project.slug}`}><a>{ project.titulo }, </a></Link></span>
                 ))}
                 </div>
-                </div>
                 <div className='mt-8'>
-                <a href='https://fernandomota.bandcamp.com/' target='_blank' rel="noreferrer">bandas sonoras</a>
+                <a href='https://fernandomota.bandcamp.com/' target='_blank' rel="noreferrer">{locale === 'pt' ? 'bandas sonoras' : 'soundtracks'}</a>
                 </div>
             </div>
             <div className="w-full h-screen hidden md:block">
