@@ -39,7 +39,7 @@ export async function getStaticProps({locale}) {
 }
 
 export default function Bio({data, sounds, socials}) {
-    const { locale } = useRouter().locale;
+    const { locale } = useRouter();
     return (
         <>
         <Header sounds={sounds} socials={socials}/>
