@@ -29,6 +29,7 @@ export default function Contactos({sounds, socials}) {
         <Header sounds={sounds} socials={socials}/>
         <div className="pl-20 pt-28 pr-5 md:pt-0 md:h-screen w-full flex items-center justify-center">
             <form name='contactos' method="POST" data-netlify="true" className="space-y-5 max-w-4xl 2xl:w-[45%] 2xl:text-xl">
+            <input type="hidden" name="form-name" value="contactos" />
                 <div className="flex space-x-5">
                     <input type="text" id="fname" name="firstname" placeholder={locale === 'pt' ? 'primeiro nome' : 'first name'} className="bg-transparent w-1/2 border p-2 text-sm 2xl:text-xl 2xl:p-5" />
                     <input type="text" id="lname" name="lastname" placeholder={locale === 'pt' ? 'apelido' : 'last name'} className="bg-transparent w-1/2 border p-2 text-sm 2xl:text-xl 2xl:p-5" />
