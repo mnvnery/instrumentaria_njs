@@ -4,31 +4,35 @@ import { useRef, useState, useEffect } from "react"
 import {RiMenuLine, RiCloseLine, RiInstagramFill, RiYoutubeFill, RiLinkM} from 'react-icons/ri'
 import { AiFillFacebook, AiOutlineLink } from 'react-icons/ai'
 import {SiLinktree} from 'react-icons/si'
+import { useAudioPlayer } from './AudioPlayerContext';
+
 
 const Header = ({sounds, socials}) => {
     const { locale, locales, asPath } = useRouter();
-    const allAudios = []
-    const audioLinks = sounds.map((sound) => (allAudios.push(sound.url)))
-    const router = useRouter()
-
-    const [audio, setAudio] = useState(null)
-    const [isPlaying, setIsPlaying] = useState(null);
-
-    const [currentAudioIndex, setCurrentAudioIndex] = useState(Math.floor(Math.random() * allAudios.length))
+    const allAudios = [];
+    const audioLinks = sounds.map((sound) => allAudios.push(sound.url));
+    const router = useRouter();
+    const { audio, setAudioSource, isPlaying, setIsPlaying } = useAudioPlayer();
+    const [currentAudioIndex, setCurrentAudioIndex] = useState(
+        Math.floor(Math.random() * allAudios.length)
+    );
+        
 
     useEffect(() => {
-        setAudio(new Audio(allAudios[currentAudioIndex]));
-    }, [])
+        if (audio === null) {
+        setAudioSource(allAudios[currentAudioIndex]);
+    }
+    }, []);
 
     const audioStart = () => {
-        audio.play();
-        setIsPlaying(true)
-    }
+    audio.play();
+    setIsPlaying(true);
+    };
 
     const audioStop = () => {
-        audio.pause();
-        setIsPlaying(false)
-    }
+    audio.pause();
+    setIsPlaying(false);
+    };
     const [navShow, setNavShow] = useState(false)
     const ref = useRef()
 
